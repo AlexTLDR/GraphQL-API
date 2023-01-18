@@ -3,10 +3,18 @@ const { ApolloServer, gql } = require("apollo-server");
 const typeDefs = gql`
   scalar Date  
 
+  """
+    An object that describes the characteristics of a ski day
+  """
+
     type SkiDay {
+            "A ski day's unique identifier"
         id: ID!
+            "The date of the ski day"
         date: Date!
+            "The location of the ski day"
         mountain: String!
+            "The shape of the snow on the ski day"
         conditions: Conditions
     }
 
@@ -39,6 +47,10 @@ const typeDefs = gql`
   type Mutation {
     addDay(input: AddDayInput!): SkiDay
     removeDay(id: ID!): RemoveDayPayload!
+  }
+
+  type Subscription {
+    newDay: SkiDay!
   }
 `;
 
