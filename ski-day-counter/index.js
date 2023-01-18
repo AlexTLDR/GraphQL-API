@@ -13,11 +13,23 @@ const typeDefs = gql`
         HEAVY
         ICE
         THIN
+        DRY
     }
 
   type Query {
     totalDays: Int!
     allDays: [SkiDay!]!
+  }
+
+  input AddDayInput {
+    date: String!
+    mountain: String!
+    conditions: Conditions
+  }
+
+  type Mutation {
+    addDay(input: AddDayInput!): SkiDay
+    removeDay(id: ID!): SkiDay!
   }
 `;
 
